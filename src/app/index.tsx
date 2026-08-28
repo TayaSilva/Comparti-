@@ -10,6 +10,11 @@ import TabBar from "@/components/navigation/TabBar";
 
 export default function HomeScreen() {
   const { height } = useWindowDimensions();
+  const residence = {
+    condominiumName: "Residencial Jardim das Flores",
+    isApartment: true,
+    isHouse: false,
+  };
 
   return (
     <View className="bg-general" style={{ flex: 1, minHeight: height }}>
@@ -23,7 +28,7 @@ export default function HomeScreen() {
         showsVerticalScrollIndicator={false}
       >
         <HomeHeader />
-        <HomeSearch />
+        <HomeSearch residence={residence} />
         <CategoriesList />
         <AvailableItems />
         <NeighborRequests />

@@ -1,4 +1,6 @@
-import { Pressable, Text } from "react-native";
+import { Pressable } from "react-native";
+
+import AppText from "@/components/ui/AppText";
 
 export default function Button() {
   return (
@@ -10,7 +12,9 @@ export default function Button() {
         backgroundColor: "#d97706",
       }}
     >
-      <Text style={{ color: "#fff", fontWeight: "600" }}>Button</Text>
+      <AppText weight="semibold" style={{ color: "#fff" }}>
+        Button
+      </AppText>
     </Pressable>
   );
 }

@@ -6,8 +6,10 @@ import {
   UserRound,
 } from "lucide-react-native";
 import type { ComponentProps, ComponentType } from "react";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+
+import AppText from "@/components/ui/AppText";
 
 type IconProps = ComponentProps<typeof House>;
 
@@ -90,16 +92,16 @@ export default function TabBar() {
                 >
                   <Icon color="#ffffff" size={26} strokeWidth={2.4} />
                 </View>
-                <Text
+                <AppText
+                  weight="bold"
                   style={{
                     fontSize: 12,
                     lineHeight: 16,
-                    fontWeight: "700",
                     color: "#6b7280",
                   }}
                 >
                   {label}
-                </Text>
+                </AppText>
               </Pressable>
             );
           }
@@ -119,16 +121,16 @@ export default function TabBar() {
                 size={22}
                 strokeWidth={active ? 2.4 : 2}
               />
-              <Text
+              <AppText
+                weight={active ? "bold" : "semibold"}
                 style={{
                   fontSize: 12,
                   lineHeight: 16,
-                  fontWeight: active ? "700" : "600",
                   color: active ? "#2563eb" : "#64748b",
                 }}
               >
                 {label}
-              </Text>
+              </AppText>
             </Pressable>
           );
         })}

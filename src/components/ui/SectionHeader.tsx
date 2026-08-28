@@ -1,4 +1,6 @@
-import { Pressable, Text, View } from "react-native";
+import { Pressable, View } from "react-native";
+
+import AppText from "@/components/ui/AppText";
 
 type SectionHeaderProps = {
   actionLabel?: string;
@@ -20,13 +22,15 @@ export default function SectionHeader({
         gap: 16,
       }}
     >
-      <Text style={{ fontSize: 22, fontWeight: "700", color: "#12304A" }}>{title}</Text>
+      <AppText weight="bold" style={{ fontSize: 22, color: "#12304A" }}>
+        {title}
+      </AppText>
 
       {actionLabel ? (
         <Pressable accessibilityRole="button" onPress={onActionPress}>
-          <Text style={{ fontSize: 16, fontWeight: "700", color: "#F97316" }}>
+          <AppText weight="bold" style={{ fontSize: 16, color: "#F97316" }}>
             {actionLabel}
-          </Text>
+          </AppText>
         </Pressable>
       ) : null}
     </View>

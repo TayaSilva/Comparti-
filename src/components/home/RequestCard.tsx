@@ -1,4 +1,6 @@
-import { Text, View } from "react-native";
+import { View } from "react-native";
+
+import AppText from "@/components/ui/AppText";
 
 export default function RequestCard() {
   return (
@@ -9,7 +11,7 @@ export default function RequestCard() {
         backgroundColor: "#fff",
       }}
     >
-      <Text>Pedido</Text>
+      <AppText>Pedido</AppText>
     </View>
   );
 }

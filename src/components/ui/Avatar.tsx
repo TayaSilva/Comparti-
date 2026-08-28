@@ -1,5 +1,7 @@
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { Image } from "expo-image";
+
+import AppText from "@/components/ui/AppText";
 
 type AvatarProps = {
   imageUri?: string | null;
@@ -44,15 +46,15 @@ export default function Avatar({
           style={{ width: size, height: size }}
         />
       ) : (
-        <Text
+        <AppText
+          weight="bold"
           style={{
             fontSize: size * 0.34,
-            fontWeight: "700",
             color: "#9A3412",
           }}
         >
           {initials}
-        </Text>
+        </AppText>
       )}
     </View>
   );

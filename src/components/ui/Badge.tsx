@@ -1,4 +1,6 @@
-import { Text, View } from "react-native";
+import { View } from "react-native";
+
+import AppText from "@/components/ui/AppText";
 
 export default function Badge() {
   return (
@@ -11,7 +13,7 @@ export default function Badge() {
         backgroundColor: "#e7dcc8",
       }}
     >
-      <Text>Badge</Text>
+      <AppText>Badge</AppText>
     </View>
   );
 }

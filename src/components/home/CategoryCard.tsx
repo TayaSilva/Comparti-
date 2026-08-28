@@ -1,5 +1,7 @@
 import { Image } from "expo-image";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, View } from "react-native";
+
+import AppText from "@/components/ui/AppText";
 
 type CategoryCardProps = {
   icon: number;
@@ -36,17 +38,17 @@ export default function CategoryCard({ icon, label, onPress }: CategoryCardProps
         />
       </View>
 
-      <Text
+      <AppText
+        weight="bold"
         numberOfLines={1}
         style={{
           fontSize: 12,
-          fontWeight: "700",
           color: "#334155",
           textAlign: "center",
         }}
       >
         {label}
-      </Text>
+      </AppText>
     </Pressable>
   );
 }

@@ -1,9 +1,10 @@
-import { TextInput } from "react-native";
+import AppTextInput from "@/components/ui/AppTextInput";
 
 export default function SearchInput() {
   return (
-    <TextInput
+    <AppTextInput
       placeholder="Buscar"
+      weight="semibold"
       style={{
         borderRadius: 14,
         paddingHorizontal: 16,

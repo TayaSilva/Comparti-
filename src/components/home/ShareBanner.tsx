@@ -1,5 +1,6 @@
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
+import AppText from "@/components/ui/AppText";
 import Button from "@/components/ui/Button";
 
 export default function ShareBanner() {
@@ -12,9 +13,9 @@ export default function ShareBanner() {
         backgroundColor: "#f59e0b",
       }}
     >
-      <Text style={{ fontSize: 20, fontWeight: "700", color: "#fff" }}>
+      <AppText weight="bold" style={{ fontSize: 20, color: "#fff" }}>
         ShareBanner
-      </Text>
+      </AppText>
       <Button />
     </View>
   );

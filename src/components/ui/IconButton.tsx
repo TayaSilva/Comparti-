@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, View } from "react-native";
+
+import AppText from "@/components/ui/AppText";
 
 type IconButtonProps = {
   accessibilityLabel?: string;
@@ -24,11 +26,8 @@ export default function IconButton({
       style={{
         width: 40,
         height: 40,
-        borderRadius: 20,
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#FFFFFF",
-      
         position: "relative",
       }}
     >
@@ -50,15 +49,15 @@ export default function IconButton({
             right: -2,
           }}
         >
-          <Text
+          <AppText
+            weight="bold"
             style={{
               fontSize: 10,
-              fontWeight: "700",
               color: "#FFFFFF",
             }}
           >
             {badgeCount}
-          </Text>
+          </AppText>
         </View>
       ) : null}
     </Pressable>

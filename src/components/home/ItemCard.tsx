@@ -1,6 +1,7 @@
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
 import Badge from "@/components/ui/Badge";
+import AppText from "@/components/ui/AppText";
 
 export default function ItemCard() {
   return (
@@ -13,7 +14,9 @@ export default function ItemCard() {
       }}
     >
       <Badge />
-      <Text style={{ fontSize: 16, fontWeight: "600" }}>Item</Text>
+      <AppText weight="semibold" style={{ fontSize: 16 }}>
+        Item
+      </AppText>
     </View>
   );
 }
