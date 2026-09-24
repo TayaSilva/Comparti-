@@ -1,8 +1,12 @@
-import { View } from "react-native";
+import { View, type ViewProps } from "react-native";
 
 import AppText from "@/components/ui/AppText";
 
-export default function Badge() {
+type BadgeProps = ViewProps & {
+  label?: string;
+};
+
+export default function Badge({ label = "Badge", ...props }: BadgeProps) {
   return (
     <View
       style={{
@@ -12,8 +16,9 @@ export default function Badge() {
         borderRadius: 999,
         backgroundColor: "#e7dcc8",
       }}
+      {...props}
     >
-      <AppText>Badge</AppText>
+      <AppText style={{ fontSize: 12, fontWeight: "500" }}>{label}</AppText>
     </View>
   );
 }

@@ -1,8 +1,12 @@
-import { Pressable } from "react-native";
+import { Pressable, type PressableProps } from "react-native";
 
 import AppText from "@/components/ui/AppText";
 
-export default function Button() {
+type ButtonProps = PressableProps & {
+  label?: string;
+};
+
+export default function Button({ label = "Button", ...props }: ButtonProps) {
   return (
     <Pressable
       style={{
@@ -11,9 +15,10 @@ export default function Button() {
         borderRadius: 14,
         backgroundColor: "#d97706",
       }}
+      {...props}
     >
       <AppText weight="semibold" style={{ color: "#fff" }}>
-        Button
+        {label}
       </AppText>
     </Pressable>
   );
