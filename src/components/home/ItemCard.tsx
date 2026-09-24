@@ -1,4 +1,5 @@
 import { View, ScrollView } from "react-native";
+import { Image } from "expo-image";
 
 import Badge from "@/components/ui/Badge";
 import AppText from "@/components/ui/AppText";
@@ -16,37 +17,50 @@ export default function ItemCard() {
           key={item.id}
           style={{
             width: 160,
-            gap: 10,
+            height: 220,
             borderRadius: 18,
             backgroundColor: "#fff",
             overflow: "hidden",
           }}
         >
+          {/* Background Image/Color */}
           <View
             style={{
-              width: 160,
-              height: 100,
+              position: "absolute",
+              width: "100%",
+              height: "100%",
               backgroundColor: item.color,
-              alignItems: "center",
-              justifyContent: "center",
             }}
           >
-            <AppText
-              weight="bold"
-              style={{
-                fontSize: 14,
-                color: "#64748b",
-                textAlign: "center",
-                paddingHorizontal: 12,
-              }}
-            >
-              {item.title}
-            </AppText>
+            {item.image ? (
+              <Image
+                source={item.image}
+                contentFit="cover"
+                style={{ width: "100%", height: "100%" }}
+              />
+            ) : null}
           </View>
 
-          <View style={{ paddingHorizontal: 12, paddingBottom: 12, gap: 8 }}>
+          {/* Overlay with semi-transparent background */}
+          <View
+            style={{
+              position: "absolute",
+              bottom: 0,
+              width: "100%",
+              backgroundColor: "rgba(0, 0, 0, 0.4)",
+              paddingHorizontal: 12,
+              paddingVertical: 12,
+              gap: 8,
+            }}
+          >
             <Badge label={item.isFree ? "Empréstimo grátis" : item.description} />
-            <AppText weight="semibold" style={{ fontSize: 14 }}>
+            <AppText
+              weight="semibold"
+              style={{
+                fontSize: 14,
+                color: "#fff",
+              }}
+            >
               {item.title}
             </AppText>
             <View style={{ flexDirection: "row", gap: 8, alignItems: "center" }}>
@@ -72,8 +86,8 @@ export default function ItemCard() {
               </View>
               <AppText
                 style={{
-                  fontSize: 12,
-                  color: "#64748b",
+                  fontSize: 11,
+                  color: "#fff",
                 }}
               >
                 {item.ownerName} • {item.location}
