@@ -22,7 +22,7 @@ export default function SectionHeader({
         gap: 16,
       }}
     >
-      <AppText weight="bold" style={{ fontSize: 22, color: "#12304A" }}>
+      <AppText weight="bold" style={{ fontSize: 16, color: "#12304A" }}>
         {title}
       </AppText>
 

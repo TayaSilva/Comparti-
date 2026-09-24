@@ -22,8 +22,8 @@ export default function HomeScreen() {
         style={{ flex: 1 }}
         contentContainerStyle={{
           padding: 24,
-          paddingBottom: 148,
-          gap: 16,
+          paddingBottom: 84,
+          gap: 24,
         }}
         showsVerticalScrollIndicator={false}
       >

@@ -4,9 +4,14 @@ import AppText from "@/components/ui/AppText";
 
 type BadgeProps = ViewProps & {
   label?: string;
+  textColor?: string;
 };
 
-export default function Badge({ label = "Badge", ...props }: BadgeProps) {
+export default function Badge({
+  label = "Badge",
+  textColor = "#0B2B66",
+  ...props
+}: BadgeProps) {
   return (
     <View
       style={{
@@ -18,7 +23,12 @@ export default function Badge({ label = "Badge", ...props }: BadgeProps) {
       }}
       {...props}
     >
-      <AppText style={{ fontSize: 12, fontWeight: "500" }}>{label}</AppText>
+      <AppText
+        weight="semibold"
+        style={{ fontSize: 12, color: textColor }}
+      >
+        {label}
+      </AppText>
     </View>
   );
 }

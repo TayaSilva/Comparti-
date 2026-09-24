@@ -8,6 +8,7 @@ import {
 import type { ComponentProps, ComponentType } from "react";
 import { Pressable, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { usePathname, useRouter } from "expo-router";
 
 import AppText from "@/components/ui/AppText";
 
@@ -16,21 +17,23 @@ type IconProps = ComponentProps<typeof House>;
 type TabItem = {
   key: string;
   label: string;
-  active?: boolean;
   isPrimary?: boolean;
   icon: ComponentType<IconProps>;
+  route?: "/" | "/profile";
 };
 
 const tabs: TabItem[] = [
-  { key: "inicio", label: "Inicio", active: true, icon: House },
+  { key: "inicio", label: "Inicio", icon: House, route: "/" },
   { key: "explorar", label: "Explorar", icon: Compass },
   { key: "compartilhar", label: "Compartilhar", isPrimary: true, icon: Plus },
   { key: "atividades", label: "Atividades", icon: Bell },
-  { key: "perfil", label: "Perfil", icon: UserRound },
+  { key: "perfil", label: "Perfil", icon: UserRound, route: "/profile" },
 ];
 
 export default function TabBar() {
   const insets = useSafeAreaInsets();
+  const pathname = usePathname();
+  const router = useRouter();
   const bottomInset = Math.max(insets.bottom, 10);
 
   return (
@@ -62,12 +65,18 @@ export default function TabBar() {
           elevation: 10,
         }}
       >
-        {tabs.map(({ key, label, icon: Icon, active, isPrimary }) => {
+        {tabs.map(({ key, label, icon: Icon, route, isPrimary }) => {
+          const active = route === "/" ? pathname === "/" : route === pathname;
+          const handlePress = () => {
+            if (route) router.navigate(route);
+          };
+
           if (isPrimary) {
             return (
               <Pressable
                 key={key}
                 accessibilityRole="button"
+                onPress={handlePress}
                 style={{
                   alignItems: "center",
                   gap: 6,
@@ -110,6 +119,7 @@ export default function TabBar() {
             <Pressable
               key={key}
               accessibilityRole="button"
+              onPress={handlePress}
               style={{
                 alignItems: "center",
                 gap: 6,
@@ -117,7 +127,7 @@ export default function TabBar() {
               }}
             >
               <Icon
-                color={active ? "#2563eb" : "#64748b"}
+                color={active ? "#F97316" : "#64748b"}
                 size={22}
                 strokeWidth={active ? 2.4 : 2}
               />
@@ -126,7 +136,7 @@ export default function TabBar() {
                 style={{
                   fontSize: 12,
                   lineHeight: 16,
-                  color: active ? "#2563eb" : "#64748b",
+                  color: active ? "#F97316" : "#64748b",
                 }}
               >
                 {label}

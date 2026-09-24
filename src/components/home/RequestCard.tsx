@@ -1,9 +1,11 @@
-import { View, Pressable, ScrollView } from "react-native";
+import { Image } from "expo-image";
+import { Pressable, ScrollView, View } from "react-native";
 
 import AppText from "@/components/ui/AppText";
 import Avatar from "@/components/ui/Avatar";
-import Button from "@/components/ui/Button";
 import { neighborRequests } from "@/mocks/neighbors";
+
+const drillIcon = require("../../../assets/images/icons/furadeira.png");
 
 export default function RequestCard() {
   const handleHaveItem = (neighborName: string, item: string) => {
@@ -20,55 +22,73 @@ export default function RequestCard() {
         <View
           key={neighbor.id}
           style={{
-            width: 160,
-            padding: 16,
+            width: 236,
+            minHeight: 270,
+            padding: 14,
             borderRadius: 18,
-            backgroundColor: "#fff",
+            backgroundColor: "#FFF1E8",
+            borderWidth: 1,
+            borderColor: "#FCE4D5",
             gap: 12,
           }}
         >
-          <View style={{ alignItems: "center", gap: 8 }}>
-            <Avatar name={neighbor.name} size={48} />
-            <View style={{ alignItems: "center" }}>
-              <AppText weight="bold" style={{ fontSize: 14 }}>
-                {neighbor.name}
+          <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
+            <Avatar name={neighbor.name} size={42} />
+            <AppText
+              weight="semibold"
+              numberOfLines={1}
+              style={{ flex: 1, fontSize: 13, color: "#334155" }}
+            >
+              {neighbor.name} está procurando
+            </AppText>
+          </View>
+
+          <View style={{ flexDirection: "row", alignItems: "flex-start", gap: 12 }}>
+            <Image
+              source={drillIcon}
+              contentFit="contain"
+              style={{ width: 42, height: 42, marginTop: 2 }}
+            />
+            <View style={{ flex: 1, gap: 6 }}>
+              <AppText
+                weight="bold"
+                numberOfLines={1}
+                style={{ fontSize: 18, lineHeight: 22, color: "#0F172A" }}
+              >
+                {neighbor.itemNeeded}
               </AppText>
               <AppText
-                style={{
-                  fontSize: 12,
-                  color: "#64748b",
-                }}
+                numberOfLines={3}
+                style={{ fontSize: 13, lineHeight: 18, color: "#334155" }}
               >
-                está procurando
+                “{neighbor.description}”
               </AppText>
             </View>
           </View>
 
-          <View
+          <AppText
+            weight="semibold"
+            style={{ marginLeft: 54, fontSize: 13, color: "#475569" }}
+          >
+            {neighbor.location}
+          </AppText>
+
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={`Responder que tem ${neighbor.itemNeeded}`}
+            onPress={() => handleHaveItem(neighbor.name, neighbor.itemNeeded)}
             style={{
-              paddingHorizontal: 8,
-              paddingVertical: 10,
+              minHeight: 40,
+              alignItems: "center",
+              justifyContent: "center",
               borderRadius: 12,
-              backgroundColor: "#f1f5f9",
+              backgroundColor: "#FF7600",
             }}
           >
-            <AppText
-              weight="semibold"
-              style={{
-                fontSize: 13,
-                textAlign: "center",
-                color: "#12304A",
-              }}
-            >
-              {neighbor.itemNeeded}
+            <AppText weight="bold" style={{ fontSize: 14, color: "#FFFFFF" }}>
+              Eu tenho
             </AppText>
-          </View>
-
-          <Button
-            label="Eu tenho"
-            onPress={() => handleHaveItem(neighbor.name, neighbor.itemNeeded)}
-            style={{ flex: 1, justifyContent: "center" }}
-          />
+          </Pressable>
         </View>
       ))}
     </ScrollView>
