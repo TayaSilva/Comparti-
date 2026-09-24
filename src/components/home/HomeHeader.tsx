@@ -29,7 +29,7 @@ export default function HomeHeader({
       <Image
         source={logoCompleta}
         contentFit="contain"
-        style={{ width: 150, height: 36 }}
+        style={{ width: 150, height: 36, marginLeft: -24 }}
       />
 
       <View style={{ flexDirection: "row", alignItems: "center", gap: 12 }}>

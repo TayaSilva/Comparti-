@@ -1,41 +1,12 @@
-import { Platform } from "react-native";
-
-// No emulador Android, "localhost" aponta para o próprio emulador.
-const defaultApiUrl =
-  Platform.OS === "android" ? "http://10.0.2.2:3333" : "http://localhost:3333";
-
-export const API_URL = process.env.EXPO_PUBLIC_API_URL ?? defaultApiUrl;
-
+// Mock API para testes. Substitua pela URL real do backend quando pronto.
 export class ApiError extends Error {
   constructor(
     message: string,
-    public status: number,
+    public status: number = 400,
     public fields?: Record<string, string>
   ) {
     super(message);
   }
-}
-
-async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
-  let response: Response;
-  try {
-    response = await fetch(`${API_URL}${path}`, {
-      ...init,
-      headers: { "Content-Type": "application/json", ...init.headers },
-    });
-  } catch {
-    throw new ApiError("Não foi possível conectar ao servidor.", 0);
-  }
-
-  const body = await response.json().catch(() => ({}));
-  if (!response.ok) {
-    throw new ApiError(
-      body.message ?? "Erro inesperado. Tente novamente.",
-      response.status,
-      body.fields
-    );
-  }
-  return body as T;
 }
 
 export type RegisterPayload = {
@@ -73,16 +44,26 @@ export type AuthResponse = {
 };
 
 export const api = {
-  register: (payload: RegisterPayload) =>
-    request<AuthResponse>("/auth/register", {
-      method: "POST",
-      body: JSON.stringify(payload),
-    }),
-  login: (email: string, password: string) =>
-    request<AuthResponse>("/auth/login", {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
-    }),
+  register: async (payload: RegisterPayload): Promise<AuthResponse> => {
+    // TODO: Conectar com a API real quando o backend estiver pronto
+    console.log("Dados de cadastro:", payload);
+
+    // Simular um pequeno delay de rede
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    return {
+      token: "mock-token-123",
+      user: {
+        id: "user-123",
+        fullName: payload.fullName,
+        email: payload.email,
+        condominium: {
+          id: "cond-123",
+          name: payload.condominium.name,
+        },
+      },
+    };
+  },
 };
 
 type ViaCepResponse = {

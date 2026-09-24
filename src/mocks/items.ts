@@ -13,6 +13,7 @@ export type AvailableItem = {
 
 const drillCardImage = require("../../assets/images/item-drill-card.png");
 const wapImage = require("../../assets/images/imagens/wap.png");
+const livrosImage = require("../../assets/images/imagens/livros.png");
 
 export const availableItems: AvailableItem[] = [
   {
@@ -42,7 +43,7 @@ export const availableItems: AvailableItem[] = [
   {
     id: "3",
     title: "Kit de livros infantis",
-    image: drillCardImage,
+    image: livrosImage,
     color: "#D1FAE5",
     badgeTextColor: "#FFFFFF",
     description: "Doação",
